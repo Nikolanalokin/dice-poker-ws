@@ -2,6 +2,8 @@ const app = require('express')()
 const http = require('http').createServer(app)
 const io = require('socket.io')(http)
 
+const port = process.env.PORT || 3000
+
 const Engine = require('./engine')
 const { User, Room, Table } = require('./models')
 
@@ -190,11 +192,6 @@ io.on('connection', (socket) => {
     }
   })
 })
-
-let port = process.env.PORT;
-if (port == null || port == '') {
-  port = 3000;
-}
 
 http.listen(port, () => {
   console.log(`listening on:${port}`)
