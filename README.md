@@ -1,2 +1,2 @@
 # dice-poker-ws
-Backend of multiplayer dice poker game
+Multiplayer dice poker backend implemented in Node.js.
