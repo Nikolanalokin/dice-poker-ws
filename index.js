@@ -168,6 +168,22 @@ io.on('connection', (socket) => {
     }
   })
 
+  socket.on('chat:send message', (data, fn) => {
+    console.log('[chat:send message]', data);
+    let room = Room.getById(rooms, user.roomId)
+    if (room) {
+      // room.users.forEach(v => {
+      //   if (v.id !== user.id) {
+      //     io.to(v.id).emit('chat:send message')
+      //   }
+      // })
+      data.id = room.messages.length + 1
+      room.messages.push(data)
+      io.to(room.id).emit('chat:received message', data)
+      fn(JSON.stringify({ ok: true }))
+    }
+  })
+
   socket.on('disconnect', () => {
     console.log('user disconnected')
     let index = users.findIndex(v => v.id == socket.id)

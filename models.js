@@ -142,6 +142,7 @@ class Room {
     this.filled = false
     this.round = 1
     this.currentUserIndex = 0
+    this.messages = []
   }
   
   addUser (user) {
